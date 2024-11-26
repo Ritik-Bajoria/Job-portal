@@ -4,11 +4,13 @@ const connection = require('./connection');
 const app = express();
 const logger = require('./controllers/logger');
 const listingsRouter = require('./routes/listingsRoutes');
+const adminRouter = require('./routes/adminRoutes');
 require('dotenv').config();
 app.use(express.json());
 
 app.use(express.urlencoded({extended:false}));
 app.use('/api/listings', listingsRouter);
+app.use('/api/admin',adminRouter);
 
 //Connnect to database
 connection.connectMongoDB(process.env.Database_URL)
